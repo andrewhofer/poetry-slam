@@ -1,7 +1,6 @@
-Author: Robert Frost
-
+#Author: Robert Frost
+#
 Title: Acquainted with the Night
-
 I have been one acquainted with the night.
 I have walked out in rain—and back in rain.
 I have outwalked the furthest city light.
@@ -22,7 +21,6 @@ Proclaimed the time was neither wrong nor right.
 I have been one acquainted with the night.
 
 Title: After Apple Picking
-
 My long two-pointed ladder's sticking through a tree
 Toward heaven still,
 And there's a barrel that I didn't fill
@@ -67,7 +65,6 @@ Long sleep, as I describe its coming on,
 Or just some human sleep.
 
 Title: The Aim Was Song
-
 Before man came to blow it right
 The wind once blew itself untaught,
 And did its loudest day and night
@@ -89,7 +86,6 @@ A little through the lips and throat.
 The aim was song—the wind could see.
 
 Title: Dust of Snow
-
 The way a crow
 Shook down on me
 The dust of snow
@@ -101,7 +97,6 @@ And saved some part
 Of a day I had rued.
 
 Title: Fire and Ice
-
 Some say the world will end in fire,
 Some say in ice.
 From what I’ve tasted of desire
@@ -113,7 +108,6 @@ Is also great
 And would suffice.
 
 Title: Gathering Leaves
-
 Spades take up leaves
 No better than spoons,
 And bags full of leaves
@@ -145,7 +139,6 @@ And who’s to say where
 The harvest shall stop?
 
 Title: The Pasture
-
 I'm going out to clean the pasture spring;
 I'll only stop to rake the leaves away
 (And wait to watch the water clear, I may):
@@ -157,7 +150,6 @@ It totters when she licks it with her tongue.
 I sha'n't be gone long.—You come too.
 
 Title: Birches
-
 When I see birches bend to left and right
 Across the lines of straighter darker trees,
 I like to think some boy’s been swinging them.
@@ -219,7 +211,6 @@ That would be good both going and coming back.
 One could do worse than be a swinger of birches.
 
 Title: The Road Not Taken
-
 Two roads diverged in a yellow wood,
 And sorry I could not travel both
 And be one traveler, long I stood
@@ -243,5 +234,7 @@ Somewhere ages and ages hence:
 Two roads diverged in a wood, and I—
 I took the one less traveled by,
 And that has made all the difference.
-
-Source: https://www.poetryfoundation.org/poets/robert-frost
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/robert-frost

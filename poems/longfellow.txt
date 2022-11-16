@@ -1,7 +1,6 @@
-Author: Henry Wadsworth Longfellow
-
+#Author: Henry Wadsworth Longfellow
+#
 Title: Aftermath
-
 When the summer fields are mown,
 When the birds are fledged and flown,
 And the dry leaves strew the path;
@@ -19,7 +18,6 @@ Where the poppy drops its seeds
 In the silence and the gloom.
 
 Title: The Arrow and The Song
-
 I shot an arrow into the air,
 It fell to earth, I knew not where;
 For, so swiftly it flew, the sight
@@ -36,7 +34,6 @@ And the song, from beginning to end,
 I found again in the heart of a friend.
 
 Title: The Building of The ship
-
 "Build me straight, O worthy Master!
 Stanch and strong, a goodly vessel,
 That shall laugh at all disaster,
@@ -515,7 +512,6 @@ Shall fold their tents, like the Arabs,
 And as silently steal away.
 
 Title: Hymn to The Night
-
 I heard the trailing garments of the Night
 Sweep through her marble halls!
 I saw her sable skirts all fringed with light
@@ -547,7 +543,6 @@ The welcome, the thrice-prayed for, the most fair,
 The best-beloved Night!
 
 Title: Nuremberg
-
 In the valley of the Pegnitz, where across broad meadow-lands
 Rise the blue Franconian mountains, Nuremberg, the ancient, stands.
 
@@ -627,7 +622,6 @@ Gathering from the pavement's crevice, as a floweret of the soil,
 The nobility of labor, — the long pedigree of toil.
 
 Title: The Wreck of Hesperus
-
 It was the schooner Hesperus,
 That sailed the wintry sea;
 And the skipper had taken his little daughtèr,
@@ -737,5 +731,7 @@ Such was the wreck of the Hesperus,
 In the midnight and the snow!
 Christ save us all from a death like this,
 On the reef of Norman's Woe!
-
-Source: https://www.poetryfoundation.org/poets/henry-wadsworth-longfellow
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/henry-wadsworth-longfellow

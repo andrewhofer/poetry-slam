@@ -1,7 +1,6 @@
-Author: Ralph Waldo Emerson
-
+#Author: Ralph Waldo Emerson
+#
 Title: Brahma
-
 If the red slayer think he slays,
 Or if the slain think he is slain,
 They know not well the subtle ways
@@ -23,7 +22,6 @@ But thou, meek lover of the good!
 Find me, and turn thy back on heaven.
 
 Title: Experience
-
 The lords of life, the lords of life,—
 I saw them pass,
 In their own guise,
@@ -46,7 +44,7 @@ Whispered, ‘Darling, never mind!
 To-morrow they will wear another face,
 The founder thou; these are thy race!’
 
-Title: fate
+Title: Fate
 That you are fair or wise is vain,
 Or strong, or rich, or generous;
 You must have also the untaught strain
@@ -98,7 +96,7 @@ And to all the heavenly brood.
 Who bides at home, nor looks abroad,
 Carries the eagles, and masters the sword.
 
-Title: Ode to beauty
+Title: Ode to Beauty
 Who gave thee, O Beauty,
 The keys of this breast,—
 Too credulous lover
@@ -204,8 +202,7 @@ And be the sport of Fate forever.
 Dread Power, but dear! if God thou be,
 Unmake me quite, or give thyself to me!
 
-Title: water
-
+Title: Water
 The water understands
 Civilization well;
 It wets my foot, but prettily,
@@ -276,7 +273,6 @@ When half-gods go,
 The gods arrive.
 
 Title: Days
-
 Daughters of Time, the hypocritic Days,
 Muffled and dumb like barefoot dervishes,
 And marching single in an endless file,
@@ -290,33 +286,12 @@ Turned and departed silent. I, too late,
 Under her solemn fillet saw the scorn.
 
 Title: Parks and Ponds
-
 Parks and ponds are good by day;
 I do not delight
 In black acres of the night,
 Nor my unseasoned step disturbs
 The sleeps of trees or dreams of herbs.
-
-Title: Brahma
-
-If the red slayer think he slays,
-Or if the slain think he is slain,
-They know not well the subtle ways
-I keep, and pass, and turn again.
-
-Far or forgot to me is near;
-Shadow and sunlight are the same;
-The vanished gods to me appear;
-And one to me are shame and fame.
-
-They reckon ill who leave me out;
-When me they fly, I am the wings;
-I am the doubter and the doubt,
-I am the hymn the Brahmin sings
-
-The strong gods pine for my abode,
-And pine in vain the sacred Seven;
-But thou, meek lover of the good!
-Find me, and turn thy back on heaven.                                                                                                                                                                                                                                                                       
-
-Source: https://www.poetryfoundation.org/poets/ralph-waldo-emerson
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/ralph-waldo-emerson

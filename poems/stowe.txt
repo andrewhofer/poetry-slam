@@ -1,7 +1,6 @@
-Author: Harriet Beecher Stowe
-
+#Author: Harriet Beecher Stowe
+#
 Title: Above
-
 Coming down a golden street
 I beheld my vanished one,
 And he moveth on a cloud,
@@ -67,7 +66,6 @@ I am charmed into forgetting
 Autumn winds and dreary grave.
 
 Title: Below
-
 Loudly sweep the winds of autumn
 O'er that lone, beloved grave,
 Where we laid those sunny ringlets,
@@ -94,7 +92,6 @@ Ever aching, ever throbbing:
 Who shall bring it unto rest?
 
 Title: Think Not All is Over
-
 Think not, when the wailing winds of autumn
 Drive the shivering leaflets from the tree,—
 Think not all is over: spring returneth,
@@ -116,7 +113,6 @@ In the frozen buds of every winter
 Sleep the blossoms of a future flower.
 
 Title: Knocking
-
 Knocking, knocking, ever knocking?
 Who is there?
 'Tis a pilgrim, strange and kingly,
@@ -183,5 +179,7 @@ And with ever-patient watching,
 With the sad eyes true and tender,
 With the glory-crownéd hair,—
 Still a God is waiting there.
-
-Source: https://www.poetryfoundation.org/poets/harriet-beecher-stowe
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/harriet-beecher-stowe

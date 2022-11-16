@@ -1,7 +1,6 @@
-Author: Edgar Allen poems
-
+#Author: Edgar Allen poems
+#
 Title: The Valley of Unrest 
-
 Once it smiled a silent dell
 Where the people did not dwell;
 They had gone unto the wars,
@@ -31,7 +30,6 @@ They weep:—from off their delicate stems
 Perennial tears descend in gems.
 
 Title: Eldorado
-
 Gaily bedight,
 A gallant knight,
 In sunshine and in shadow,   
@@ -61,7 +59,6 @@ The shade replied,—
 ‘If you seek for Eldorado!’
 
 Title: The Haunted Palace
-
 In the greenest of our valleys
 By good angels tenanted,
 Once a fair and stately palace—
@@ -117,7 +114,6 @@ A hideous throng rush out forever,
 And laugh—but smile no more.
 
 Title: The Raven
-
 Once upon a midnight dreary, while I pondered, weak and weary,
 Over many a quaint and curious volume of forgotten lore—
 While I nodded, nearly napping, suddenly there came a tapping,
@@ -245,7 +241,6 @@ And my soul from out that shadow that lies floating on the floor
 Shall be lifted—nevermore!
 
 Title: To Helen
-
 Helen, thy beauty is to me
 Like those Nicéan barks of yore,
 That gently, o'er a perfumed sea,
@@ -265,7 +260,6 @@ Ah, Psyche, from the regions which
 Are Holy-Land!
 
 Title: To One in Paradise
-
 Thou wast that all to me, love,
 For which my soul did pine—
 A green isle in the sea, love,
@@ -295,5 +289,7 @@ Are where thy grey eye glances,
 And where thy footstep gleams—
 In what ethereal dances,
 By what eternal streams.
-
-Source: https://www.poetryfoundation.org/poets/edgar-allan-poe
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/edgar-allan-poe

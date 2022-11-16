@@ -1,7 +1,6 @@
 Author: Sylvia Plath
 
 Title: The Applicant
-
 First, are you our sort of a person?
 Do you wear
 A glass eye, false teeth or a crutch,
@@ -51,7 +50,6 @@ My boy, it's your last resort.
 Will you marry it, marry it, marry it.
 
 Title: Ariel
-
 Stasis in darkness.
 Then the substanceless blue   
 Pour of tor and distances.
@@ -95,7 +93,6 @@ Into the red
 Eye, the cauldron of morning.
 
 Title: Daddy
-
 You do not do, you do not do   
 Any more, black shoe
 In which I have lived like a foot   
@@ -193,7 +190,6 @@ They always knew it was you.
 Daddy, daddy, you bastard, I’m through.
 
 Title: Elm 
-
 I know the bottom, she says. I know it with my great tap root:   
 It is what you fear.
 I do not fear it: I have been there.
@@ -251,7 +247,6 @@ It petrifies the will. These are the isolate, slow faults
 That kill, that kill, that kill.
 
 Title: Lady Lazarus
-
 I have done it again.   
 One year in every ten   
 I manage it——
@@ -365,7 +360,6 @@ I rise with my red hair
 And I eat men like air.
 
 Title: Tulips
-
 The tulips are too excitable, it is winter here.
 Look how white everything is, how quiet, how snowed-in.   
 I am learning peacefulness, lying by myself quietly
@@ -437,5 +431,7 @@ And I am aware of my heart: it opens and closes
 Its bowl of red blooms out of sheer love of me.
 The water I taste is warm and salt, like the sea,
 And comes from a country far away as health.
-
-Source: https://www.poetryfoundation.org/poets/sylvia-plath
+#
+#end
+#
+#Source: https://www.poetryfoundation.org/poets/sylvia-plath
