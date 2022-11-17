@@ -1,4 +1,6 @@
 import random, sys
+from nltk.corpus import wordnet as wn
+from SyllableCounter import SyllableCounter
 import numpy as np
 
 POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
@@ -7,8 +9,11 @@ POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
 class Poet:
     def __init__(self, filename):
         self.filename = filename
+        self.sylco = SyllableCounter()
         self.inspoPoems = {}
         self.numPoems = 0
+        self.numStanzas = 0
+        self.syllablesPerVerse = 0
 
     def readFile(self):
         """
@@ -49,12 +54,48 @@ class Poet:
                 for item in value:
                     print(item)
 
+        
+    def computeNumStanzas(self):
+        """
+        Computes the average number of stanzas in the inspiring poets set and 
+        assigns to self.numStanzas
+
+        return :: None
+        """
+        totalStanzas = 0
+        for poem in self.inspoPoems.values():
+            for line in poem:
+                if line == '':
+                    totalStanzas += 1
+            totalStanzas += 1
+
+        self.numStanzas = round(totalStanzas / self.numPoems)
+
+    def computeSyllablesPerVerse(self):
+        """
+        Computes the average number of syllables per verse in the inspiring 
+        poets set and assigns to self.numStanzas
+
+        return :: None
+        """
+        totalSyllables = 0
+        totalVerses = 0
+
+        for poem in self.inspoPoems.values():
+            for line in poem:
+                if line != '':
+                    totalVerses += 1
+                    for word in line.split(' '):
+                        sylls = self.sylco.syllableCounter(word)
+                        totalSyllables += sylls
+
+        self.syllablesPerVerse = round(totalSyllables / totalVerses)
+
 def main():
     """
     Driver
     """
     poet = None
-
     if len(sys.argv) == 2 and sys.argv[1] in POETS:
         poet = sys.argv[1]
     else:
@@ -66,7 +107,15 @@ def main():
 
     myPoet = Poet(filename)
     myPoet.readFile()
-    myPoet.poemsToString()
+    myPoet.computeNumStanzas()
+    myPoet.computeSyllablesPerVerse()
+
+    """
+    syns = wn.synsets("program")
+    print("Syns: ")
+    for i in range(len(syns)-1):
+        print(syns[i].lemmas()[0].name())
+    """
 
 
 if __name__ == "__main__":
