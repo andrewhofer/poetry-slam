@@ -1,3 +1,15 @@
+"""
+Drew Hofer
+November 22, 2022
+CSCI 3725, Professor Harmon
+
+The Poet class is designed to generate poetry. Given a filename, Poet extracts
+and stores the contents of the inspiring set, computes the characteristics of
+the new poem, and generates original poetry following the syntactical structure 
+of the inspiring author and other attributes (number of stanzas, number of
+verses per stanza, and number of syllables per verse).
+"""
+
 import random, sys
 from nltk.corpus import wordnet as wn
 from SyllableCounter import SyllableCounter
@@ -6,17 +18,22 @@ from collections import defaultdict
 import os
 import re
 
+#Globals
 POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
         'stowe', 'whitman']
+
 POETS_REF = {'emerson': 'Ralph Waldo Emerson', 'frost' : 'Robert Frost', \
     'longfellow': 'Henry Wadsworth Longfellow', 'neruda': 'Pablo Neruda', \
         'plath': 'Sylvia Plath', 'poe': 'Edgar Allen Poe', \
             'stowe': 'Harriet Beecher Stowe', 'whitman': 'Walt Whitman'}
+
 RANDOM_SYNSET_PROB = 0.1
+
 STARTING_TYPES = ['NN']
 
 class Poet:
     def __init__(self, filename):
+        """Initializer"""
         self.filename = filename
         self.sylCounter = SyllableCounter()
         self.tagger = Tagger()
@@ -32,9 +49,8 @@ class Poet:
 
     def readFile(self):
         """
-        Once a Poet object has been created, this method accesses the instance
-        variable self.filename, reads the respective file, and extracts the 
-        poem contents into self.inspoPoems
+        This method accesses the instance variable self.filename, reads the 
+        respective file, and extracts the poem contents into self.inspoPoems
 
         return :: None
         """
@@ -126,12 +142,28 @@ class Poet:
         print("Verses per stanza: " + str(self.versesPerStanza))
 
     def tagData(self):
+        """
+        Calls the Tagger on every line of the poem in the corpus, so the
+        taggedData is now tuples of the form (syntactic category, token)
+        
+        return :: None
+        """
         for line in self.corpus:
             if line != '':
                 tagged = self.tagger.getTags(line)
                 self.taggedData.append(tagged)
 
     def compilePartsDistribution(self):
+        """
+        Accesses the tagged data and creates frequency distribution mapping
+        each syntactic category to the syntactic categroies that appear 
+        directly after it and how many times. 
+
+        Return :: None
+
+        cfd implentation insipred by Tyler Hallada at:
+        https://www.hallada.net/2017/07/11/generating-random-poems-with-python.html
+        """
         cfd = defaultdict(lambda: defaultdict(lambda: 0))
         for item in self.taggedData:
             for i in range(len(item) - 2):  # loop to the next-to-last word
@@ -145,14 +177,29 @@ class Poet:
         self.partsDistribution = dictionary
 
     def compilePartsLists(self):
+        """
+        Accesses the tagged data to make lists of seen words for each 
+        syntactic category identified in the training data.  
+        
+        return :: None
+        """
         for item in self.taggedData:
             for i in range(len(item) - 2):
                 if item[i][1].replace('$', '') in self.partsList.keys():
-                    self.partsList[item[i][1].replace('$', '')].append(item[i][0])
+                    self.partsList[item[i][1].replace('$', '')].\
+                        append(item[i][0])
                 else:
                     self.partsList[item[i][1].replace('$', '')] = [item[i][0]]
 
     def getRandomSyn(self, word):
+        """
+        word (String) : The word we would like a random synony for
+
+        Takes in a word and, using WordNets synset feature, randomly chooses
+        a synonym of the word.
+
+        return :: String — The selected synonym of the input word. 
+        """
         syns = wn.synsets(word)
         synSet = set()
         for i in range(len(syns)-1):
@@ -161,14 +208,17 @@ class Poet:
         print(synSet)
         return random.choice(list(synSet))
 
-    def countValues(self, dictionary):
-        count = 0
-        for item in dictionary.values():
-            count += item
-
-        return count
-
     def getNextWord(self, prevType):
+        """
+        prevtype (String) - the syntactic category of the previous word
+
+        Given the syntactic category of the previous word, generates the next 
+        word in the poem by selecting from the most likely syntactic
+        category from the partsDistribution.
+
+        return currType (String) — the syntactic category of the new word
+        return newWord (String) — the next word to be put in the poem
+        """
         currType = None
         newWord = None
         dist = self.partsDistribution.get(prevType)
@@ -178,6 +228,13 @@ class Poet:
         return currType, newWord
 
     def genPoem(self):
+        """
+        Generates the lines of the new poem according to the previously 
+        calculated number of stanzas, verses per stanza, and approximate
+        number of syllables per line.
+        
+        return :: None
+        """
         poem = []
         start = random.choice(STARTING_TYPES)
         #print(random.choice(self.partsList.get(start)))
@@ -202,6 +259,15 @@ class Poet:
         return poem
 
     def writePoem(self, poem):
+        """
+        poem (list) : the line of the generated poem
+
+        Takes the lines of the generated poem and writes them to a .txt file 
+        in the output directory. Also calls readAndDisplay() to open the
+        generated poem in a .txt file and recite the poem aloud. 
+
+        return :: None
+        """
         print("Writing to output file…")
         length = len(self.filename)
         poet = self.filename[:length-4]
@@ -222,7 +288,15 @@ class Poet:
         self.readAndDisplay(start, poem)
 
     def readAndDisplay(self, start, poem):
-        #print(poem)
+        """
+        start (string) : Message to be recited at beginning of poem
+        poem (list) : A list of all the lines in the poem
+
+        Uses the OS TTS to recite a psuedo-title for the poem and then speaks
+        each line in the poem.
+        
+        return :: None
+        """
         os.system("open output/" + self.filename)
         os.system("say " + start)
         for line in poem:
@@ -230,7 +304,8 @@ class Poet:
 
 def main():
     """
-    Driver
+    The driver of the entire program. Extracts file, creates a Poet object, 
+    and performs the necessary steps for poem generation. 
     """
     poet = None
     if len(sys.argv) == 2 and sys.argv[1] in POETS:

@@ -1,10 +1,14 @@
+"""
+Syntax Tree in Python
+
+Implementation and code from samishawl at:
+https://www.geeksforgeeks.org/syntax-tree-natural-language-processing/
+"""
 import nltk
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 from nltk import pos_tag, word_tokenize, RegexpParser
-"""
-https://www.geeksforgeeks.org/syntax-tree-natural-language-processing/
-"""
+
 class Tagger:
     def getTags(self, sentence):
         # Find all parts of speech in above sentence

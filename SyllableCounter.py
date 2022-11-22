@@ -1,6 +1,7 @@
 """
 Counting Syllables in the English Language Using Python
-https://eayd.in/?p=232
+
+Impletation and code from: https://eayd.in/?p=232
 """
 import re
 class SyllableCounter:
