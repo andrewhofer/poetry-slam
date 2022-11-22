@@ -3,21 +3,22 @@ from nltk.corpus import wordnet as wn
 from SyllableCounter import SyllableCounter
 from Tagger import Tagger
 from collections import defaultdict
-#import numpy as np
-#import spacy
 import string
-#import parser as st
+import re
 
 POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
         'stowe', 'whitman']
-REPLACE_TABLE = {'?': '', '(': '', ')': '', ':': '', '...': ' ', '.': '', \
-    ',,,': '', '"': '', ',': '', '!': '', '-': '', '——': ''}
+POETS_REF = {'emerson': 'Ralph Waldo Emerson', 'frost' : 'Robert Frost', \
+    'longfellow': 'Henry Wadsworth Longfellow', 'neruda': 'Pablo Neruda', \
+        'plath': 'Sylvia Plath', 'poe': 'Edgar Allen Poe', \
+            'stowe': 'Harriet Beecher Stowe', 'whitman': 'Walt Whitman'}
 RANDOM_SYNSET_PROB = 0.1
+STARTING_TYPES = ['NN']
 
 class Poet:
     def __init__(self, filename):
         self.filename = filename
-        self.sylco = SyllableCounter()
+        self.sylCounter = SyllableCounter()
         self.tagger = Tagger()
         self.inspoPoems = {}
         self.numPoems = 0
@@ -47,9 +48,9 @@ class Poet:
                 self.inspoPoems[currTitle] = []
 
             elif not line.startswith('#'):
-                self.inspoPoems[currTitle].append(line.rstrip())
-                line = line.translate(str.maketrans('', '', string.punctuation))
-                self.corpus.append(line.rstrip().lower())
+                curr = re.sub("[^\w\d'\s]+",'',line)
+                self.inspoPoems[currTitle].append(curr.rstrip())
+                self.corpus.append(curr.lower())
 
         print("Done reading file " + self.filename + "…")
         file.close()
@@ -107,7 +108,7 @@ class Poet:
                 if line != '':
                     totalVerses += 1
                     for word in line.split(' '):
-                        sylls = self.sylco.syllableCounter(word)
+                        sylls = self.sylCounter.syllableCounter(word)
                         totalSyllables += sylls
 
         self.syllablesPerVerse = round(totalSyllables / totalVerses)
@@ -160,6 +161,66 @@ class Poet:
         print(synSet)
         return random.choice(list(synSet))
 
+    def countValues(self, dictionary):
+        count = 0
+        for item in dictionary.values():
+            count += item
+
+        return count
+
+    def getNextWord(self, prevType):
+        currType = None
+        newWord = None
+        dist = self.partsDistribution.get(prevType)
+        ty = max(dist, key=dist.get)
+        newWord = random.choice(self.partsList.get(ty))
+        currType = ty
+        return currType, newWord
+
+    def genPoem(self):
+        poem = []
+        start = random.choice(STARTING_TYPES)
+        #print(random.choice(self.partsList.get(start)))
+        stanzas = 0
+        verses = 0
+        while stanzas < self.numStanzas:
+            line = []
+            syllables = 0
+            while verses < self.versesPerStanza + 1:
+                while syllables < self.syllablesPerVerse:
+                    currType, newWord = self.getNextWord(start)
+                    line.append(newWord)
+                    start = currType
+                    syllables += self.sylCounter.syllableCounter(newWord)
+                syllables = 0
+                poem.append(line)
+                line = []
+                verses += 1
+            verses = 0
+            stanzas += 1
+
+        return poem
+
+    def writePoem(self, poem):
+        print("Writing to output file…")
+        length = len(self.filename)
+        poet = self.filename[:length-4]
+        file = open('output/' + poet + ".txt", 'w')
+        start = "A poem inspired by the style, structure, and vocabulary of "
+        file.write(start + POETS_REF.get(poet) + ":\n\n")
+        curr = 0
+        for i in range(0, self.versesPerStanza*self.numStanzas):
+            curr += 1
+            if curr == self.versesPerStanza:
+                file.write("\n")
+                curr = 0
+            else:
+                file.write(' '.join(poem[i]) + "\n")
+
+        print("Write complete. ")
+        file.close()
+
+
 def main():
     """
     Driver
@@ -182,6 +243,9 @@ def main():
     myPoet.tagData()
     myPoet.compilePartsDistribution()
     myPoet.compilePartsLists()
+    poemLines = myPoet.genPoem()
+    myPoet.writePoem(poemLines)
+
 
 if __name__ == "__main__":
     main()
