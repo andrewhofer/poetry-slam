@@ -14,6 +14,7 @@ class Poet:
         self.numPoems = 0
         self.numStanzas = 0
         self.syllablesPerVerse = 0
+        self.versesPerStanza = 0
 
     def readFile(self):
         """
@@ -41,7 +42,7 @@ class Poet:
     def poemsToString(self):
         """
         This method prints out the contents of self.inspoPoems in a
-        user-friendly format
+        user-friendly format.
 
         return :: None
         """
@@ -54,24 +55,29 @@ class Poet:
                 for item in value:
                     print(item)
 
-        
     def computeNumStanzas(self):
         """
         Computes the average number of stanzas in the inspiring poets set and 
-        assigns to self.numStanzas
+        assigns to self.numStanzas. Also computes the average number of verses
+        per stanza in the inspiring poets set and assigns to 
+        self.versesPerStanza.
 
         return :: None
         """
         totalStanzas = 0
+        verses = 0
         for poem in self.inspoPoems.values():
             for line in poem:
                 if line == '':
                     totalStanzas += 1
+                else:
+                    verses += 1
             totalStanzas += 1
 
         self.numStanzas = round(totalStanzas / self.numPoems)
+        self.versesPerStanza = round(verses / totalStanzas)
 
-    def computeSyllablesPerVerse(self):
+    def computeSyllablesAndStanzas(self):
         """
         Computes the average number of syllables per verse in the inspiring 
         poets set and assigns to self.numStanzas
@@ -91,6 +97,18 @@ class Poet:
 
         self.syllablesPerVerse = round(totalSyllables / totalVerses)
 
+    def getPoemInfo(self):
+        """
+        Prints out the structure of the to be generated poem in a user
+        friendly format. 
+        
+        return :: None
+        """
+        print("Your poem will be structured in the following way:")
+        print("Stanzas: " + str(self.numStanzas))
+        print("Syllables per verse: " + str(self.syllablesPerVerse))
+        print("Verses per stanza: " + str(self.versesPerStanza))
+
 def main():
     """
     Driver
@@ -108,7 +126,8 @@ def main():
     myPoet = Poet(filename)
     myPoet.readFile()
     myPoet.computeNumStanzas()
-    myPoet.computeSyllablesPerVerse()
+    myPoet.computeSyllablesAndStanzas()
+    myPoet.getPoemInfo()
 
     """
     syns = wn.synsets("program")
@@ -116,7 +135,6 @@ def main():
     for i in range(len(syns)-1):
         print(syns[i].lemmas()[0].name())
     """
-
 
 if __name__ == "__main__":
     main()
