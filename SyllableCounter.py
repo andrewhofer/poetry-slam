@@ -14,7 +14,8 @@ class SyllableCounter:
         exception_add = ['serious','crucial']
         exception_del = ['fortunately','unfortunately']
 
-        co_one = ['cool','coach','coat','coal','count','coin','coarse','coup','coif','cook','coign','coiffe','coof','court']
+        co_one = ['cool','coach','coat','coal','count','coin','coarse',\
+            'coup','coif','cook','coign','coiffe','coof','court']
         co_two = ['coapt','coed','coinci']
 
         pre_one = ['preach']
@@ -32,15 +33,18 @@ class SyllableCounter:
 
         if word[-2:] == "es" or word[-2:] == "ed" :
             doubleAndtripple_1 = len(re.findall(r'[eaoui][eaoui]',word))
-            if doubleAndtripple_1 > 1 or len(re.findall(r'[eaoui][^eaoui]',word)) > 1 :
-                if word[-3:] == "ted" or word[-3:] == "tes" or word[-3:] == "ses" or word[-3:] == "ied" or word[-3:] == "ies" :
+            if doubleAndtripple_1 > 1 or len(re.findall(r'[eaoui][^eaoui]'\
+                ,word)) > 1 :
+                if word[-3:] == "ted" or word[-3:] == "tes" or word[-3:] == \
+                    "ses" or word[-3:] == "ied" or word[-3:] == "ies" :
                     pass
                 else :
                     disc+=1
 
         #3) discard trailing "e", except where ending is "le"  
 
-        le_except = ['whole','mobile','pole','male','female','hale','pale','tale','sale','aisle','whale','while']
+        le_except = ['whole','mobile','pole','male','female','hale','pale',\
+            'tale','sale','aisle','whale','while']
 
         if word[-1:] == "e" :
             if word[-2:] == "le" and word not in le_except :

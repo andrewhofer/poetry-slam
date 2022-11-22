@@ -1,20 +1,33 @@
 import random, sys
 from nltk.corpus import wordnet as wn
 from SyllableCounter import SyllableCounter
-import numpy as np
+from Tagger import Tagger
+from collections import defaultdict
+#import numpy as np
+#import spacy
+import string
+#import parser as st
 
 POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
         'stowe', 'whitman']
+REPLACE_TABLE = {'?': '', '(': '', ')': '', ':': '', '...': ' ', '.': '', \
+    ',,,': '', '"': '', ',': '', '!': '', '-': '', '——': ''}
+RANDOM_SYNSET_PROB = 0.1
 
 class Poet:
     def __init__(self, filename):
         self.filename = filename
         self.sylco = SyllableCounter()
+        self.tagger = Tagger()
         self.inspoPoems = {}
         self.numPoems = 0
         self.numStanzas = 0
         self.syllablesPerVerse = 0
         self.versesPerStanza = 0
+        self.corpus = []
+        self.taggedData = []
+        self.partsDistribution = {}
+        self.partsList = {}
 
     def readFile(self):
         """
@@ -35,6 +48,8 @@ class Poet:
 
             elif not line.startswith('#'):
                 self.inspoPoems[currTitle].append(line.rstrip())
+                line = line.translate(str.maketrans('', '', string.punctuation))
+                self.corpus.append(line.rstrip().lower())
 
         print("Done reading file " + self.filename + "…")
         file.close()
@@ -109,6 +124,42 @@ class Poet:
         print("Syllables per verse: " + str(self.syllablesPerVerse))
         print("Verses per stanza: " + str(self.versesPerStanza))
 
+    def tagData(self):
+        for line in self.corpus:
+            if line != '':
+                tagged = self.tagger.getTags(line)
+                self.taggedData.append(tagged)
+
+    def compilePartsDistribution(self):
+        cfd = defaultdict(lambda: defaultdict(lambda: 0))
+        for item in self.taggedData:
+            for i in range(len(item) - 2):  # loop to the next-to-last word
+                cfd[item[i][1].replace('$', '')][item[i+1][1].replace('$', \
+                    '')] += 1  
+
+        dictionary = dict(cfd)
+        for key, value in dictionary.items():
+            dictionary[key] = dict(value)
+
+        self.partsDistribution = dictionary
+
+    def compilePartsLists(self):
+        for item in self.taggedData:
+            for i in range(len(item) - 2):
+                if item[i][1].replace('$', '') in self.partsList.keys():
+                    self.partsList[item[i][1].replace('$', '')].append(item[i][0])
+                else:
+                    self.partsList[item[i][1].replace('$', '')] = [item[i][0]]
+
+    def getRandomSyn(self, word):
+        syns = wn.synsets(word)
+        synSet = set()
+        for i in range(len(syns)-1):
+            synSet.add(syns[i].lemmas()[0].name())
+        
+        print(synSet)
+        return random.choice(list(synSet))
+
 def main():
     """
     Driver
@@ -128,13 +179,9 @@ def main():
     myPoet.computeNumStanzas()
     myPoet.computeSyllablesAndStanzas()
     myPoet.getPoemInfo()
-
-    """
-    syns = wn.synsets("program")
-    print("Syns: ")
-    for i in range(len(syns)-1):
-        print(syns[i].lemmas()[0].name())
-    """
+    myPoet.tagData()
+    myPoet.compilePartsDistribution()
+    myPoet.compilePartsLists()
 
 if __name__ == "__main__":
     main()
