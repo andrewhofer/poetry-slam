@@ -219,10 +219,12 @@ class Poet:
 
         print("Write complete.")
         file.close()
+        self.readAndDisplay(start, poem)
 
-    def readAndDisplay(self, poem):
-        print(poem)
+    def readAndDisplay(self, start, poem):
+        #print(poem)
         os.system("open output/" + self.filename)
+        os.system("say " + start)
         for line in poem:
             os.system("say " + ' '.join(line))
 
@@ -250,8 +252,6 @@ def main():
     myPoet.compilePartsLists()
     poemLines = myPoet.genPoem()
     myPoet.writePoem(poemLines)
-    myPoet.readAndDisplay(poemLines)
-
 
 if __name__ == "__main__":
     main()
