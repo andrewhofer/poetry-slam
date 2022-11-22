@@ -3,7 +3,7 @@ from nltk.corpus import wordnet as wn
 from SyllableCounter import SyllableCounter
 from Tagger import Tagger
 from collections import defaultdict
-import string
+import os
 import re
 
 POETS = ['emerson', 'frost', 'longfellow', 'neruda', 'plath', 'poe', \
@@ -217,9 +217,14 @@ class Poet:
             else:
                 file.write(' '.join(poem[i]) + "\n")
 
-        print("Write complete. ")
+        print("Write complete.")
         file.close()
 
+    def readAndDisplay(self, poem):
+        print(poem)
+        os.system("open output/" + self.filename)
+        for line in poem:
+            os.system("say " + ' '.join(line))
 
 def main():
     """
@@ -245,6 +250,7 @@ def main():
     myPoet.compilePartsLists()
     poemLines = myPoet.genPoem()
     myPoet.writePoem(poemLines)
+    myPoet.readAndDisplay(poemLines)
 
 
 if __name__ == "__main__":
