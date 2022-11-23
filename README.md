@@ -1,7 +1,7 @@
 The Edgar Allen Poem Generator\
 Drew Hofer\
 November 22, 2022\
-CSCI 3725, Professor Harmon\
+CSCI 3725, Professor Harmon
 
 The Edgar Allen Poem Generator generates poetry based on the specified poet, 
 or randomly selects one if an invalid one is given. To specify a poet, run the
