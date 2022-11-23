@@ -41,6 +41,8 @@ class Poet:
         self.numPoems = 0
         self.numStanzas = 0
         self.syllablesPerVerse = 0
+        self.preciseSyllablesPerVerse = 0.0
+        self.allWords = []
         self.versesPerStanza = 0
         self.corpus = []
         self.taggedData = []
@@ -66,7 +68,14 @@ class Poet:
             elif not line.startswith('#'):
                 curr = re.sub("[^\w\d'\s]+",'',line)
                 self.inspoPoems[currTitle].append(curr.rstrip())
-                self.corpus.append(curr.lower())
+                self.corpus.append(curr)
+                self.allWords.extend(curr)
+        
+        for item in self.corpus:
+            for word in item.split():
+                self.allWords.append(word)
+        
+        #print(self.allWords)
 
         print("Done reading file " + self.filename + "…")
         file.close()
@@ -128,6 +137,7 @@ class Poet:
                         totalSyllables += sylls
 
         self.syllablesPerVerse = round(totalSyllables / totalVerses)
+        self.preciseSyllablesPerVerse = totalSyllables / totalVerses
 
     def getPoemInfo(self):
         """
@@ -196,7 +206,7 @@ class Poet:
         word (String) : The word we would like a random synony for
 
         Takes in a word and, using WordNets synset feature, randomly chooses
-        a synonym of the word.
+        a synonym of the word. A "mutation" of sorts. 
 
         return :: String — The selected synonym of the input word. 
         """
@@ -204,9 +214,12 @@ class Poet:
         synSet = set()
         for i in range(len(syns)-1):
             synSet.add(syns[i].lemmas()[0].name())
-        
-        print(synSet)
-        return random.choice(list(synSet))
+    
+        synSet = list(synSet)
+        if len(synSet) > 0:
+            return random.choice(synSet)
+        else:
+            return None
 
     def getNextWord(self, prevType):
         """
@@ -225,6 +238,12 @@ class Poet:
         ty = max(dist, key=dist.get)
         newWord = random.choice(self.partsList.get(ty))
         currType = ty
+        ran = random.random()
+        # Use random synonym with P(RANDOM_SYNSET_PROB)
+        if ran < RANDOM_SYNSET_PROB:
+            syn = self.getRandomSyn(newWord)
+            if syn != None: # if synonym available
+                newWord = syn
         return currType, newWord
 
     def genPoem(self):
@@ -302,6 +321,40 @@ class Poet:
         for line in poem:
             os.system("say " + ' '.join(line))
 
+    def getFitness(self, poem):
+        """
+        poem (list) : The lines of the poem we are going to calculate the 
+                      fitness for
+
+        This method determines and prints the fitness of the generated poem 
+        by taking the average of two metrics that measure the poems overall
+        similarity to the structure of the inspiring poems. 
+        1. Average # syllables per verse in generated poem / Average # 
+           syllables per verse in inspiring set
+        2. (Unique words / total words) *generated* / 
+           (Unique words / total words) *inspiring*
+        
+        return :: None
+        """
+        genWords = []
+        verses = 0
+        syllables = 0
+
+        for line in poem:
+            for item in line:
+                genWords.append(item.rstrip())
+                syllables += self.sylCounter.syllableCounter(item.rstrip())
+            verses += 1
+        
+        perVerse = syllables / verses
+        syllFitness = perVerse / self.preciseSyllablesPerVerse
+
+        poemWordFitness = (len(set(genWords)) / len(genWords))
+        inspoWordFitness = len(set(self.allWords)) / len(self.allWords)
+        wordFitness = poemWordFitness / inspoWordFitness
+        overallFitness = (syllFitness + wordFitness) / 2
+        print("The overall fitness of this poem is: " + str(overallFitness))
+
 def main():
     """
     The driver of the entire program. Extracts file, creates a Poet object, 
@@ -318,6 +371,7 @@ def main():
     filename = poet + '.txt'
 
     myPoet = Poet(filename)
+    print(myPoet.getRandomSyn('table'))
     myPoet.readFile()
     myPoet.computeNumStanzas()
     myPoet.computeSyllablesAndStanzas()
@@ -326,7 +380,9 @@ def main():
     myPoet.compilePartsDistribution()
     myPoet.compilePartsLists()
     poemLines = myPoet.genPoem()
+    myPoet.getFitness(poemLines)
     myPoet.writePoem(poemLines)
+    myPoet.getFitness(poemLines)
 
 if __name__ == "__main__":
     main()
