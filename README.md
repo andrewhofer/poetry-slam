@@ -1,7 +1,7 @@
-The Edgar Allen Poem Generator
-Drew Hofer
-November 22, 2022
-CSCI 3725, Professor Harmon
+The Edgar Allen Poem Generator\
+Drew Hofer\
+November 22, 2022\
+CSCI 3725, Professor Harmon\
 
 The Edgar Allen Poem Generator generates poetry based on the specified poet, 
 or randomly selects one if an invalid one is given. To specify a poet, run the
@@ -14,19 +14,19 @@ where valid poets are 'emerson', 'frost', 'longfellow', 'neruda', 'plath',
 
 The poet.py then performs the following:
 
-Read in the specified inspiring set
-– {Poem Title : [Lines of poem], ... }
-Create corpus: [Every line from inspiring set]
-Compute poem structure based on the inspiring set
-– Average number of stanzas per poem
-– Average number of verses per stanza
-– Average number of syllables per stanza
-Tag corpus, creating a syntax tree for every line in the inspiring set
-Compile tagged data
-– First-order Markov chain used to determine the syntactic category of the next word
-– Category lists — {Syntactic category : [words in that category], ... }
+Read in the specified inspiring set\
+– {Poem Title : [Lines of poem], ... }\
+Create corpus: [Every line from inspiring set]\
+Compute poem structure based on the inspiring set\
+– Average number of stanzas per poem\
+– Average number of verses per stanza\
+– Average number of syllables per stanza\
+Tag corpus, creating a syntax tree for every line in the inspiring set\
+Compile tagged data\
+– First-order Markov chain used to determine the syntactic category of the next word\
+– Category lists — {Syntactic category : [words in that category], ... }\
 
-External Sources Used:
+External Sources Used:\
 Syntax Tree in Python from samishawl at: https://www.geeksforgeeks.org/syntax-tree-natural-language-processing/
 
 Counting Syllables in the English Language Using Python at: https://eayd.in/?p=232
@@ -34,9 +34,9 @@ Counting Syllables in the English Language Using Python at: https://eayd.in/?p=2
 cfd implentation from Tyler Hallada at:
 https://www.hallada.net/2017/07/11/generating-random-poems-with-python.html
 
-Challenges:
+Challenges:\
 
-Inspirations:
+Inspirations:\
 Hugo Gonçalo Oliveira (https://aclanthology.org/W17-3502/) for the idea to
 really hone in on the semantics and structure of poetry
 
