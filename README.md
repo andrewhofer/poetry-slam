@@ -35,6 +35,17 @@ cfd implentation from Tyler Hallada at:
 https://www.hallada.net/2017/07/11/generating-random-poems-with-python.html
 
 Challenges:\
+I was challenged as a computer scientist in this project in a number of ways, 
+most greatly by the task of mimicking human intelligence and creativity. There
+are so many aspects of poetry that are quite complicated and beyond the 
+understanding of a simple machine. One thing that I find interesting about 
+poetry is form. The length of lines, number of syllables, and connections
+between words is an art. But, since it's an art, it's also a great challenge 
+to attempt to make a machine understand it. 
+
+I was also challenged by working with different libraries I had no prior
+experience with. While testy and frustrating at times, it's rewarding to learn
+something new and then see it in practice. 
 
 Inspirations:\
 Hugo Gonçalo Oliveira (https://aclanthology.org/W17-3502/) for the idea to
